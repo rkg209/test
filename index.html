@@ -47,7 +47,7 @@
       arObject.visible = false;
       scene.addNode(arObject);
 
-      let flower = new Gltf2Node({url: 'media/gltf/cookies/scene.gltf'});
+      let flower = new Gltf2Node({url: 'media/gltf/sunflower/sunflower.gltf'});
       arObject.addNode(flower);
 
       let reticle = new Gltf2Node({url: 'media/gltf/reticle/reticle.gltf'});
@@ -94,7 +94,6 @@
       }
 
       function onSessionStarted(session) {
-        xrButton.innerHTML = 'Exit AR';
         session.addEventListener('end', onSessionEnded);
         session.addEventListener('select', onSelect);
 
