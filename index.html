@@ -5,18 +5,18 @@
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
     <meta name='mobile-web-app-capable' content='yes'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
-    <link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png'>
-    <link rel='icon' type='image/png' sizes='96x96' href='favicon-96x96.png'>
+    <link rel='icon' type='image/png' sizes='64x64' href='Favicon1.png'>
+    <link rel='icon' type='image/png' sizes='128x128' href='Favicon2.png'>
     <link rel='stylesheet' href='css/common.css'>
 
-    <title>Hit Test with Anchors</title>
+    <title>3D Menu</title>
   </head>
   <body>
     <header>
       <details open>
-        <summary>Hit Test with Anchors</summary>
+        <summary>3D Menu</summary>
         <p>
-          This sample demonstrates using hit testing to find intersections on real-world surfaces and then using Anchors to attach a virtual object to that location.
+          See the real 3D Model of foods before Ordering.
           <a class="back" href="./">Back</a>
         </p>
       </details>
@@ -47,7 +47,7 @@
       arObject.visible = false;
       scene.addNode(arObject);
 
-      let flower = new Gltf2Node({url: 'media/gltf/sunflower/sunflower.gltf'});
+      let flower = new Gltf2Node({url: 'media/gltf/cookies/scene.gltf'});
       arObject.addNode(flower);
 
       let reticle = new Gltf2Node({url: 'media/gltf/reticle/reticle.gltf'});
@@ -61,7 +61,7 @@
       vec3.set(shadow.scale, 0.15, 0.15, 0.15);
       arObject.addNode(shadow);
 
-      const MAX_FLOWERS = 30;
+      const MAX_FLOWERS = 1;
       let flowers = [];
 
       // Ensure the background is transparent for AR.
@@ -71,9 +71,9 @@
         xrButton = new WebXRButton({
           onRequestSession: onRequestSession,
           onEndSession: onEndSession,
-          textEnterXRTitle: "START AR",
+          textEnterXRTitle: "ENTER MENU",
           textXRNotFoundTitle: "AR NOT FOUND",
-          textExitXRTitle: "EXIT  AR",
+          textExitXRTitle: "EXIT",
         });
         document.querySelector('header').appendChild(xrButton.domElement);
 
@@ -94,6 +94,7 @@
       }
 
       function onSessionStarted(session) {
+        xrButton.innerHTML = 'Exit AR';
         session.addEventListener('end', onSessionEnded);
         session.addEventListener('select', onSelect);
 
@@ -138,10 +139,10 @@
         xrButton.setSession(null);
       }
 
-      const MAX_ANCHORED_OBJECTS = 30;
+      const MAX_ANCHORED_OBJECTS = 1;
       let anchoredObjects = [];
       function addAnchoredObjectsToScene(anchor) {
-        let flower = new Gltf2Node({url: 'media/gltf/sunflower/sunflower.gltf'});
+        let flower = new Gltf2Node({url: 'media/gltf/cookies/scene.gltf'});
         scene.addNode(flower);
         anchoredObjects.push({
           anchoredObject: flower,
